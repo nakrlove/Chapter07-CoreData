@@ -14,7 +14,7 @@ class ListVC: UITableViewController {
         return self.fetch(entity:"Board")
     }()
     
-    func fetch(entity: String) -> [NSManagedObject] {
+    func fetch(entity: String = "Board") -> [NSManagedObject] {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -99,12 +99,37 @@ class ListVC: UITableViewController {
             }
             
             if self.edit(object: record ,title: title , contents: contents) == true {
-                self.tableView.reloadData()
+                
+                let cell = self.tableView.cellForRow(at: indexPath)
+                cell?.textLabel?.text = title
+                cell?.detailTextLabel?.text = contents
+
+                let firstIndexPath = IndexPath(item: 0, section: 0)
+                self.tableView.moveRow(at: indexPath, to: firstIndexPath)
+//                self.tableView.reloadData()
             }
             
         })
         
         self.present(alert, animated: false)
+        
+//        if self.edit(object: record , title: title!  , contents: contents!) == true {
+//
+//            let cell = self.tableView.cellForRow(at: indexPath)
+//            cell?.textLabel?.text = title
+//            cell?.detailTextLabel?.text = contents
+//
+//            let firstIndexPath = IndexPath(item: 0, section: 0)
+//            self.tableView.moveRow(at: indexPath, to: firstIndexPath)
+//        }
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let object = self.list[indexPath.row]
+        let uvc = self.storyboard?.instantiateViewController(withIdentifier: "LogVC") as! LogVC
+        uvc.board = (object as! BoardMO)
+        
+        self.show(uvc, sender: self)
     }
     
     func edit(object: NSManagedObject,title: String, contents: String) -> Bool {
@@ -117,9 +142,18 @@ class ListVC: UITableViewController {
         object.setValue(contents, forKey: "contents")
         object.setValue(Date(), forKey: "regdate")
         
+        
+        
+        let logObject = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context) as! LogMO
+        logObject.regdate = Date()
+        logObject.type = logType.edit.rawValue
+        
+       
+        (object as! BoardMO).addToLogs(logObject)
         do {
             try context.save()
 //            self.list.append(object)
+            self.list = self.fetch()
             return true
         }catch {
             context.rollback()
@@ -137,9 +171,16 @@ class ListVC: UITableViewController {
         object.setValue(contents, forKey: "contents")
         object.setValue(Date(), forKey: "regdate")
         
+        let logObject = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context) as! LogMO
+        logObject.regdate = Date()
+        logObject.type = logType.create.rawValue
+        (object as! BoardMO).addToLogs(logObject)
+        
+        
         do {
             try context.save()
-            self.list.append(object)
+//            self.list.append(object)
+            self.list.insert(object, at: 0)
             return true
         }catch {
             context.rollback()

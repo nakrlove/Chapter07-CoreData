@@ -15,6 +15,7 @@
 		6432C5E3295AF72D00C80465 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6432C5E2295AF72D00C80465 /* Assets.xcassets */; };
 		6432C5E6295AF72D00C80465 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6432C5E4295AF72D00C80465 /* LaunchScreen.storyboard */; };
 		6432C5F0295AF8AF00C80465 /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6432C5EF295AF8AF00C80465 /* ListVC.swift */; };
+		643CAD76295B6D6A001FD4AC /* LogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643CAD75295B6D6A001FD4AC /* LogVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		6432C5E5295AF72D00C80465 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6432C5E7295AF72D00C80465 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6432C5EF295AF8AF00C80465 /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
+		643CAD75295B6D6A001FD4AC /* LogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				6432C5D8295AF72A00C80465 /* SceneDelegate.swift */,
 				6432C5DA295AF72A00C80465 /* ViewController.swift */,
 				6432C5EF295AF8AF00C80465 /* ListVC.swift */,
+				643CAD75295B6D6A001FD4AC /* LogVC.swift */,
 				6432C5DC295AF72A00C80465 /* Main.storyboard */,
 				6432C5E2295AF72D00C80465 /* Assets.xcassets */,
 				6432C5E4295AF72D00C80465 /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6432C5DB295AF72A00C80465 /* ViewController.swift in Sources */,
+				643CAD76295B6D6A001FD4AC /* LogVC.swift in Sources */,
 				6432C5F0295AF8AF00C80465 /* ListVC.swift in Sources */,
 				6432C5D7295AF72A00C80465 /* AppDelegate.swift in Sources */,
 				6432C5D9295AF72A00C80465 /* SceneDelegate.swift in Sources */,
